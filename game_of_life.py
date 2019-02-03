@@ -82,11 +82,27 @@ def do_stuff(data):
 
 
 
+def new_tile_clicked(old_click, click_point, tile_size):
+    if old_click == None or click_point == None:
+        return True
 
+    oldX = old_click.getX()
+    oldY = old_click.getY()
+
+    newX = click_point.getX()
+    newY = click_point.getY()
+
+    diffX = abs(oldX - newX)
+    diffY = abs(oldY - newY)
+
+    if diffX > tile_size or diffY > tile_size:
+        return True
+    else:
+        return False
 
 def main():
     # init data
-    tile_size = 50
+    tile_size = 25
     window_size = 500
     num_of_tiles = int(window_size / tile_size)
     data = np.zeros((num_of_tiles,num_of_tiles), dtype=bool)
@@ -105,33 +121,33 @@ def main():
     animate(win, data, tile_size)
     sleep(1)
 
+    old_click = None
+    old_key = ""
 
 
     while True:
         click_point = win.checkMouse()
-        old_click = None
         key = win.checkKey()
-        old_key = ""
 
         # clicked new grid element? -> populate
-        if click_point != old_click:
+        if (click_point != old_click and
+         new_tile_clicked(old_click, click_point, tile_size)):
             populate_on_mouse(click_point, data, tile_size, window_size)
-            old_click = click_point
+            old_click = None
+            click_point = None
+
             animate(win,data,tile_size)
         
         # new key pres? start simulation
         if key != old_key:
             run = not run
-            old_key = key
+            old_key = ''
+            key = ''
 
         if run:
-            data = np.copy(do_stuff(data))
-            sleep(1)
+            data = do_stuff(data)
+            sleep(0.5)
             animate(win,data,tile_size)
 
-
-
-    win.getMouse()    
-    win.close()
 
 main()
