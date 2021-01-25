@@ -63,10 +63,6 @@ def do_stuff(data):
 
                     if data[curr_x, curr_y] == True:
                         num_of_neighbours += 1
-            #             print('added neighbor at x:' + str(curr_x) + 
-            #                 " y: " + str(curr_y))
-
-            # print("num_of_neighbours: " + str(num_of_neighbours))
             
             # die from isolation
             if num_of_neighbours < 2:
