@@ -2,6 +2,6 @@
 
 A simple an minimaly interactive python implemenation of Conway's Game of Life.
 
-To create new alive cells or to delte alive cells, simply click on the corresponding cell.
+To create new alive cells or to delete alive cells, simply click on the corresponding cell.
 
 Have fun!
