@@ -109,11 +109,12 @@ def main():
 
     run = False
 
-    data[2,2] = True
-    data[2,3] = True
-    data[3,2] = True
-    data[3,3] = True
-    data[3,4] = True
+    data[7,7] = True
+    data[7,8] = True
+    data[6,8] = True
+    data[6,8] = True
+    data[8,8] = True
+    data[7,9] = True
     animate(win, data, tile_size)
     sleep(1)
 
@@ -142,7 +143,7 @@ def main():
 
         if run:
             data = do_stuff(data)
-            sleep(0.5)
+            sleep(0.01)
             animate(win,data,tile_size)
 
 
